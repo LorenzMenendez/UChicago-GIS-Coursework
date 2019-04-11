@@ -13,3 +13,17 @@
 ### Joins
 * dplyr has `left_join()`, and `inner_join()` functions. Specify `by =` argument if there are no column header matches across the two datasets.
 * `setdiff(column1, column2)` will show you what didn't join in your data. 
+
+### Creating new variables
+* It's good data practice to create new datasets instead of overwriting over the original data
+* Concatenating columns together using `unite("Column Name", sep = ",")`
+* Separate columns using `separate("Original Column", c("New Column 1", "New Column 2", sep = ","))`
+* You can use `rename()` and `set_names()` to change the name of columns
+* Drop the geometry using `st_drop_geometry()`
+
+## Raster Attribute Operations
+* Creating a raster dataset from scratch using `raster(nrows =, ncols =, res =, xmn =, xmx =, ymn =, ymx = vals= )`
+* Subset using the base R `[]` operators like `elev[1,1]` --> Cell 1,1 of elevation raster
+* Overwrite using the same `[]` operator like `elev[1,1] = 0` --> Cell 1,1 gets value 0. 
+* Descriptive Raster Stats using `summary()` or `cellStats()`
+* Visualize using `hist()`, `boxplot()` ... 
