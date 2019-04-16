@@ -1,4 +1,4 @@
-# [Lecture 3 — Attribute Data Operations](https://docs.google.com/presentation/d/1N0B8u4OBPr9n0mbZgKP-8MX1pl28L6USs8h90VyetUs/edit#slide=id.g57bb6aab40_0_104)
+# [Week 2.1 — Attribute Data Operations](https://docs.google.com/presentation/d/1N0B8u4OBPr9n0mbZgKP-8MX1pl28L6USs8h90VyetUs/edit#slide=id.g57bb6aab40_0_104)
 ## Vector Attribute Operations
 * sf objects: Extends the data.frame, storing spatial and non-spatial data in the same way. One column per attribute value and one row per observation. Geometry is plotted in *geom* column. 
 * Inspect data dimensions: `dim(world)` --> Rows and Columns -or- `nrow(world)` and `ncol(world)`
@@ -27,3 +27,13 @@
 * Overwrite using the same `[]` operator like `elev[1,1] = 0` --> Cell 1,1 gets value 0. 
 * Descriptive Raster Stats using `summary()` or `cellStats()`
 * Visualize using `hist()`, `boxplot()` ... 
+
+# [Week 3.1 — Geometry Operations](https://geocompr.robinlovelace.net/geometric-operations.html)
+
+## Vector Transformations
+* Simplifications: Allows for generalization of vector objects to reduce storage space. Algorithms include `st_simplify()` (adjust individual polygons), `ms_simplify()` (conserves typology)
+* Centroids: Divided between Geographic Centroid `st_centroid()` and Point on Surface `st_point_on_surface()`. 
+* Buffers: Use `st_buffer(, dist = )`
+* Affine Transformations
+* Unions: Easy to use **Tidyverse** with **sf**, `aggregate()` and `group_by()`
+* Casting: Of multi-objects into points, line and polygons

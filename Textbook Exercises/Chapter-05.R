@@ -179,3 +179,28 @@ grain_poly = rasterToPolygons(grain) %>% # Converts each raster cell into a poly
 grain_poly2 = grain_poly %>% # Converts aggregated polygons when raster cells are same value
         group_by(layer) %>%
         summarize()
+
+# Lecture Work
+
+library(RQGIS)
+library(dplyr)
+library(sf)
+data(random_points)
+data(ndvi)
+ch = st_combine(random_points) %>%
+        st_convex_hull()
+
+plot(ch)
+
+nz_simplified = st_simplify(nz[1], dTolerance = 45000) %>%
+        plot()
+
+
+can_buffer_points = nz[1] %>% # For some reason not working
+        filter(Name == 'Canterbury') %>%
+        st_buffer(, dist = 100) %>%
+        st_within(, nz_height) %>%
+        n()
+        
+
+
