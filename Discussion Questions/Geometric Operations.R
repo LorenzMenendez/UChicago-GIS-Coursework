@@ -1,9 +1,9 @@
 # Week 3 Discussion Questions
+
+# Question 1
 library(sf)
 library(dplyr)
 library(spData)
-
-# Question 1
 
 # Rotation function
 rotation = function(a){
@@ -13,13 +13,36 @@ rotation = function(a){
 
 # Finding Centroid of the World
 
-world_centroid = st_transform(world, 4088) %>% # Centroid Calculation requires projected CRS
+world_centroid = st_transform(nz, 4088) %>% # Centroid Calculation requires projected CRS
         st_combine() %>%
         st_centroid()
 
 # Applying Rotation
-world_rotate = (st_geometry(world)  # Transformation "sf" to "sfc"
+world_rotate = (st_geometry(nz)  # Transformation "sf" to "sfc"
          - world_centroid) * rotation(180) + world_centroid
+
+# Question 2
+library(raster)
+library(sf)
+library(dplyr)
+
+# Creating the grain raster
+grain_order = c("clay", "silt", "sand")
+grain_char = sample(grain_order, 36, replace = TRUE)
+grain_fact = factor(grain_char, levels = grain_order)
+grain = raster(nrows = 6, ncols = 6, res = 0.5, 
+               xmn = -1.5, xmx = 1.5, ymn = -1.5, ymx = 1.5,
+               vals = grain_fact)
+
+grain_poly = rasterToPolygons(grain) %>% # Returns a polygonizes grain raster
+        st_as_sf()
+
+clay_poly = grain_poly %>% # Returns a tibble/sf multipolygon object where the grain is "clay"
+        group_by(layer) %>%
+        summarize() %>%
+        filter(layer == 1)
+
+
 
 # Question 3
 library(sf)
