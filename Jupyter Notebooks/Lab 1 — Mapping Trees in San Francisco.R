@@ -32,5 +32,10 @@ trees_tidy_sf = st_as_sf(trees_tidy, coords = c("longitude", "latitude"), crs = 
 
 trees_tidy_kde = trees_tidy_sf %>%
         as('Spatial') %>%
-        sp.kde(bw = 400, n = 750, standardize = FALSE)
+        sp.kde(bw = 400, n = 750, standardize = TRUE) 
 
+kde_map = leaflet() %>%
+        addTiles() %>%
+        addRasterImage(trees_tidy_kde, color = "Greens", opacity = .65)
+
+readline("Please enter your unqiue Project ID. It should look like 'sanguine-parsec-238723' ")
