@@ -1,0 +1,3 @@
+[submodule "Labs/Lab"]
+	path = Labs/Lab
+	url = https://github.com/ljwolf/geopython.git
