@@ -1,5 +1,3 @@
-
-
 # STEP 1: 
 #Read Community Area boundaries
 
